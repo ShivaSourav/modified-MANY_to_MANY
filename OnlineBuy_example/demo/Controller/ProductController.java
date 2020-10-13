@@ -1,0 +1,26 @@
+package com.OnlineBuy_example.demo.Controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.OnlineBuy_example.demo.Repository.ProductRep;
+import com.OnlineBuy_example.demo.model.ProductData;
+
+
+
+@RestController
+@RequestMapping("/product")
+public class ProductController {
+
+	@Autowired
+	private ProductRep productRepository;
+	
+	@PostMapping(value = "/insertProduct")
+	public String insertProduct(@RequestBody ProductData product) {
+		productRepository.save(product);
+		return "Product Saved";
+	}
+}
